@@ -2,49 +2,44 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
-const inflationRate = 2.5
+
 
 
 func main() {
-	var investmentAmount float64 
-	var years float64
-	var expectedReturnRate float64
+	var revenue float64
+	var expenses float64
+	var taxRate float64
 
-	// fmt.Print("Investment Amount: ")
-	outputText("Investment Amount: ")
-	fmt.Scan(&investmentAmount)
+	// fmt.Print("Revenue: ")
+	calculate("Revenue: ")
+	fmt.Scan(&revenue)
 
-	// fmt.Print("Years: ")
-	outputText("Years: ")
-	fmt.Scan(&years)
+	// fmt.Print("Expenses: ")
+	calculate("Expenses: ")
+	fmt.Scan(&expenses)
 
-	// fmt.Print("expectedRate: ")
-	outputText("expectedRate: ")
-	fmt.Scan(&expectedReturnRate)
+	// fmt.Print("Tax Rate: ")
+	calculate("Tax Rate: ")
+	fmt.Scan(&taxRate)
 
-	futureValue, futureRealValue := calcculateFutureValue(investmentAmount, expectedReturnRate, years)
+	 ebt, profit, ratio := calculateAmout(revenue, expenses, taxRate)
+	 fmt.Printf("%0.1f\n", ebt)
+	 fmt.Printf("%0.1f\n", profit)
+	 fmt.Printf("%0.3f\n", ratio)
 
-	// futureValue := investmentAmount * math.Pow(1+expectedReturnRate/100, years)
-	// futureRealValue := futureValue / math.Pow(1+inflationRate/100, years)
+}
 
-	formatted := fmt.Sprintf("Future Value: %.1f\n", futureValue)
-	formattedRFV := fmt.Sprintf("Future value (adjusted for inflation): %.1f\n", futureRealValue)
+func calculate(n string) {
+	fmt.Print(n)
+}
 
-	// fmt.Printf("Future value: %.0f\nFuture Value (adjuested for inflation): %.0f", futureValue, futureRealValue)
-	fmt.Print(formatted, formattedRFV)
+func calculateAmout(r,e,t float64) (float64, float64, float64) {
+	ebt := r - e
+	p := ebt * (1-t/100)
+	ra := ebt/p
+	return ebt, p, ra
 }
 
 
-func outputText(text string) {
-	fmt.Print(text)
-}
-
-func calcculateFutureValue(investmentAmount, expectedReturnRate, years float64) (float64, float64) {
-	fv := investmentAmount * math.Pow(1+expectedReturnRate/100, years)
-	rfv := fv / math.Pow(1+inflationRate/100, years)
-	return fv, rfv
-	// return
-}
