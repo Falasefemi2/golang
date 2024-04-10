@@ -13,6 +13,13 @@ type User struct {
 	createdAt time.Time
 }
 
+// struct embedding
+type Admin struct {
+	email    string
+	password string
+	User     User
+}
+
 func (u *User) OutPutData() {
 	fmt.Println(u.firstName, u.lastName, u.birthRate)
 }
@@ -22,6 +29,19 @@ func (u *User) OutPutData() {
 func (u *User) ClearUserName() {
 	u.firstName = ""
 	u.lastName = ""
+}
+
+func NewAdmin(email, password string) Admin {
+	return Admin{
+		email:    email,
+		password: password,
+		User: User{
+			firstName: "ADMIN",
+			lastName:  "ADMIN",
+			birthRate: "____",
+			createdAt: time.Now(),
+		},
+	}
 }
 
 func NewUser(firstName, lastName, birthRate string) (*User, error) {
