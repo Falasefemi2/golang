@@ -1,98 +1,37 @@
-// package main
-
-// import (
-// 	"fmt"
-// 	"time"
-// )
-
-// type User struct {
-// 	firstName string
-// 	lastName  string
-// 	birthdate string
-// 	createdAt time.Time
-// }
-
-// func (u User) outPutData() {
-// 	fmt.Println(u.firstName, u.lastName, u.birthdate)
-// }
-
-// // receiver argument
-
-// func (u *User) clearUserName() {
-// 	u.firstName = ""
-// 	u.lastName = ""
-// }
-
-// func newUser(firstName, lastName, birthdate string) *User {
-// 	return &User{
-// 		firstName: firstName,
-// 		lastName:  lastName,
-// 		birthdate: birthdate,
-// 		createdAt: time.Now(),
-// 	}
-// }
-
-// func main() {
-// 	firstName := getUserData("Please enter your first name: ")
-// 	lastName := getUserData("Please enter your last name: ")
-// 	birthdate := getUserData("Please enter your birthdate (MM/DD/YYYY): ")
-
-// 	var appUser *User
-
-// 	appUser = newUser(firstName, lastName, birthdate)
-
-// 	// ... do something awesome with that gathered data!
-
-// 	// fmt.Println(firstName, lastName, birthdate)
-
-// 	appUser.outPutData()
-// 	appUser.clearUserName()
-// 	appUser.outPutData()
-// }
-
-// func getUserData(promptText string) string {
-// 	fmt.Print(promptText)
-// 	var value string
-// 	fmt.Scan(&value)
-// 	return value
-// }
-
 package main
 
 import (
 	"fmt"
-	"strconv"
+
+	"example.com/structs/user"
 )
 
-type User struct {
-	userName string
-	password string
-	age      int
-}
-
 func main() {
-	userName := getUser("Enter username: ")
-	password := getUser("Enter password: ")
-	age := getUser("Enter age: ")
+	firstName := getUserData("Please enter your first name: ")
+	lastName := getUserData("Please enter your last name: ")
+	birthRate := getUserData("Please enter your birthRate (MM/DD/YYYY): ")
 
-	ageInt, err := strconv.Atoi(age)
+	var appUser *user.User
+
+	appUser, err := user.NewUser(firstName, lastName, birthRate)
+
 	if err != nil {
-		fmt.Println("Invalid age. Please enter a valid number.")
+		fmt.Println(err)
 		return
 	}
 
-	user := User{
-		userName: userName,
-		password: password,
-		age:      ageInt,
-	}
+	// ... do something awesome with that gathered data!
 
-	fmt.Println(user)
+	// fmt.Println(firstName, lastName, birthRate)
+
+	appUser.OutPutData()
+	appUser.ClearUserName()
+	appUser.OutPutData()
 }
 
-func getUser(promptText string) string {
+func getUserData(promptText string) string {
 	fmt.Print(promptText)
 	var value string
-	fmt.Scan(&value)
+	fmt.Scanln(&value)
 	return value
 }
