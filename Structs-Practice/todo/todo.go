@@ -33,7 +33,7 @@ func New(content string) (Todo, error) {
 		return Todo{}, errors.New("invalid input")
 	}
 
-	return Note{
+	return Todo{
 		Text: content,
 	}, nil
 }
