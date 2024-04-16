@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 type product struct {
 	id    string
 	title string
@@ -11,29 +9,29 @@ type product struct {
 func main() {
 	// 1
 	hobbies := [3]string{"eating", "cooking", "dancing"}
-	fmt.Println(hobbies)
+	// fmt.Println(hobbies)
 
 	// 2
-	fmt.Println(hobbies[0])
-	fmt.Println(hobbies[1:])
+	// fmt.Println(hobbies[0])
+	// fmt.Println(hobbies[1:])
 
 	// 3
 	mainHobbies := hobbies[:2]
-	fmt.Println(mainHobbies)
+	// fmt.Println(mainHobbies)
 
 	// 4
-	fmt.Println(cap(mainHobbies))
+	// fmt.Println(cap(mainHobbies))
 	mainHobbies = mainHobbies[1:3]
-	fmt.Println(mainHobbies)
+	// fmt.Println(mainHobbies)
 
 	// 5
 	courseGoals := []string{"be good at golang", "get a job"}
-	fmt.Println(courseGoals)
+	// fmt.Println(courseGoals)
 
 	// 6
 	courseGoals[1] = "Learn all the details"
 	courseGoals = append(courseGoals, "Know this very well")
-	fmt.Println(courseGoals)
+	// fmt.Println(courseGoals)
 
 	// 7
 	products := []product{
@@ -48,7 +46,16 @@ func main() {
 			4000,
 		},
 	}
-	fmt.Println(products)
+	// fmt.Println(products)
+	newProd := product{
+		"123",
+		"A third prod",
+		1000,
+	}
+	products = append(products, newProd)
+	// fmt.Println(products)
+
+	book()
 }
 
 // Time to practice what you learned!
@@ -68,3 +75,16 @@ func main() {
 // 7) Bonus: Create a "Product" struct with title, id, price and create a
 //		dynamic list of products (at least 2 products).
 //		Then add a third product to the existing list of products.
+
+// Create a program that manages a book collection.
+// Initialize an array with at least three books, each represented by a struct with fields like title, author, and genre.
+// Print the array of books to the command line.
+// Output more data about the array:
+// Print the details of the first book.
+// Combine the details of the second and third books into a new list and print it.
+// Create a slice based on the first book that contains the first and second books.
+// Implement two different ways to create this slice.
+// Re-slice the slice from the previous step and change it to contain the second and last books from the original array.
+// Create a "dynamic array" that contains your favorite movies (at least 2 movies).
+// Update the second movie to a different one and then add a third movie to the existing dynamic array.
+// Bonus: Create a "MusicAlbum" struct with title, artist, and release year, and create a dynamic list of albums (at least 2 albums). Then, add a third album to the existing list of albums.
