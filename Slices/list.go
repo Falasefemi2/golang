@@ -1,61 +1,77 @@
 package main
 
+import "fmt"
+
 type product struct {
 	id    string
 	title string
 	price int
 }
 
+// func main() {
+// 	// 1
+// 	hobbies := [3]string{"eating", "cooking", "dancing"}
+// 	fmt.Println(hobbies)
+
+// 	// 2
+// 	fmt.Println(hobbies[0])
+// 	fmt.Println(hobbies[1:])
+
+// 	// 3
+// 	mainHobbies := hobbies[:2]
+// 	fmt.Println(mainHobbies)
+
+// 	// 4
+// 	fmt.Println(cap(mainHobbies))
+// 	mainHobbies = mainHobbies[1:3]
+// 	fmt.Println(mainHobbies)
+
+// 	// 5
+// 	courseGoals := []string{"be good at golang", "get a job"}
+// 	fmt.Println(courseGoals)
+
+// 	// 6
+// 	courseGoals[1] = "Learn all the details"
+// 	courseGoals = append(courseGoals, "Know this very well")
+// 	fmt.Println(courseGoals)
+
+// 	// 7
+// 	products := []product{
+// 		{
+// 			"id",
+// 			"A first ",
+// 			300,
+// 		},
+// 		{
+// 			"ids",
+// 			"A second product",
+// 			4000,
+// 		},
+// 	}
+// 	fmt.Println(products)
+// 	newProd := product{
+// 		"123",
+// 		"A third prod",
+// 		1000,
+// 	}
+// 	products = append(products, newProd)
+// 	fmt.Println(products)
+
+// 	book()
+// }
+
 func main() {
-	// 1
-	hobbies := [3]string{"eating", "cooking", "dancing"}
-	// fmt.Println(hobbies)
+	prices := []float64{10.00, 8.99}
+	fmt.Println(prices[0:1])
+	prices[1] = 9.99
 
-	// 2
-	// fmt.Println(hobbies[0])
-	// fmt.Println(hobbies[1:])
+	prices = append(prices, 5.99, 7.77, 66.55)
+	prices = prices[1:]
+	fmt.Println(prices)
 
-	// 3
-	mainHobbies := hobbies[:2]
-	// fmt.Println(mainHobbies)
-
-	// 4
-	// fmt.Println(cap(mainHobbies))
-	mainHobbies = mainHobbies[1:3]
-	// fmt.Println(mainHobbies)
-
-	// 5
-	courseGoals := []string{"be good at golang", "get a job"}
-	// fmt.Println(courseGoals)
-
-	// 6
-	courseGoals[1] = "Learn all the details"
-	courseGoals = append(courseGoals, "Know this very well")
-	// fmt.Println(courseGoals)
-
-	// 7
-	products := []product{
-		{
-			"id",
-			"A first ",
-			300,
-		},
-		{
-			"ids",
-			"A second product",
-			4000,
-		},
-	}
-	// fmt.Println(products)
-	newProd := product{
-		"123",
-		"A third prod",
-		1000,
-	}
-	products = append(products, newProd)
-	// fmt.Println(products)
-
-	book()
+	discountPrices := []float64{101.99, 80.99, 20.56}
+	prices = append(prices, discountPrices...)
+	fmt.Println(prices)
 }
 
 // Time to practice what you learned!
