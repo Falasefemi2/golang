@@ -3,21 +3,21 @@ package main
 import "fmt"
 
 func main() {
-	fact := factorial(5)
-	fmt.Println(fact)
+	numbers := []int{1, 10, 15}
+
+	sum := sumUp(1, 10, 15, -89)
+	anotherSum := sumUp(1, numbers...)
+
+	fmt.Println(sum)
+	fmt.Println(anotherSum)
 }
 
-func factorial(number int) int {
-	if number == 0 {
-		return 1
+func sumUp(startingValue int, numbers ...int) int {
+	sum := 0
+
+	for _, val := range numbers {
+		sum += val
 	}
-	return number * factorial(number-1)
 
-	// result := 1
-	// for i := 1; i <= number; i++ {
-	// 	result = result * i
-	// }
-	// return result
+	return sum
 }
-
-// factorial of 5 => 5*4*3*2*1 => 120
