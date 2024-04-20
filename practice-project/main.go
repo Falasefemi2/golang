@@ -9,17 +9,19 @@ import (
 
 func main() {
 	taxRate := []float64{0, 0.07, 0.1, 0.15}
+	doneChans := make([]chan bool, len(taxRate))
 
-	for _, taxRate := range taxRate {
+	for index, taxRate := range taxRate {
+		doneChans[index] = make(chan bool)
 		fm := filemanager.New("prices.txt", fmt.Sprintf("result_%.0f.json", taxRate*100))
 		// cmdm := cmdproject.New()
 		priceJob := prices.NewTaxIncludedPriceJob(fm, taxRate)
-		err := priceJob.Process()
+		go priceJob.Process(doneChans[index])
 
-		if err != nil {
-			fmt.Println("could not process job")
-			fmt.Println(err)
-		}
+		// if err != nil {
+		// 	fmt.Println("could not process job")
+		// 	fmt.Println(err)
+		// }
 	}
 
 }
