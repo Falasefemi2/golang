@@ -33,12 +33,14 @@ func (job *TaxIncludedPriceJob) LoadData() error {
 	return nil
 }
 
-func (job *TaxIncludedPriceJob) Process(doneChan chan bool) {
+func (job *TaxIncludedPriceJob) Process(doneChan chan bool, errorChan chan error) {
 	// Load data from the file
 	err := job.LoadData()
 
 	if err != nil {
 		// return err
+		errorChan <- err
+		return
 	}
 
 	// Create a map to store the results
