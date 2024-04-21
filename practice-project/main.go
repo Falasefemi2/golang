@@ -26,8 +26,15 @@ func main() {
 		// }
 	}
 
-	for _, doneChan := range doneChans {
-		<-doneChan
+	for index := range taxRate {
+		select {
+		case err := <-errorChans[index]:
+			if err != nil {
+				fmt.Println(err)
+			}
+		case <-doneChans[index]:
+			fmt.Println("job done")
+		}
 	}
 
 }
