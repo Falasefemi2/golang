@@ -38,7 +38,7 @@ func (job *TaxIncludedPriceJob) Process(doneChan chan bool) {
 	err := job.LoadData()
 
 	if err != nil {
-		return err
+		// return err
 	}
 
 	// Create a map to store the results
@@ -53,6 +53,7 @@ func (job *TaxIncludedPriceJob) Process(doneChan chan bool) {
 	// Print the results
 	job.TaxIncludedPrices = result
 	job.IOManger.WriteResult(job)
+	doneChan <- true
 }
 
 func NewTaxIncludedPriceJob(iom iomanager.IOManager, taxRate float64) *TaxIncludedPriceJob {
