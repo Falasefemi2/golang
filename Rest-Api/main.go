@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"example.com/restapi/db"
@@ -21,6 +22,7 @@ func main() {
 func getEvents(context *gin.Context) {
 	events, err := models.GetAllEvents()
 	if err != nil {
+		fmt.Println("Error getting events:", err)
 		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not fetch events. Try again later"})
 		return
 	}
@@ -40,8 +42,8 @@ func createEvent(context *gin.Context) {
 	event.UserID = 1
 
 	err = event.Save()
-
 	if err != nil {
+		fmt.Println("Error saving event:", err)
 		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not create events. Try again later"})
 		return
 	}

@@ -55,9 +55,8 @@ func InitDB() error {
 	var err error
 	DB, err = sql.Open("sqlite3", "api.db")
 	if err != nil {
-		return fmt.Errorf("could not connect to database: %w", err)
+		panic("Could not connect to database")
 	}
-	defer DB.Close()
 
 	DB.SetMaxOpenConns(10)
 	DB.SetMaxIdleConns(5)
