@@ -1,10 +1,10 @@
 
-PUT http://localhost:8080/events/1
-Content-Type:  application/json
+PUT http://localhost:8080/events/2
+Content-Type:  application/json 
 
-{
+{ 
     "name": "updated test event", 
     "description": "A test event",
-    "location": "Text location updated",
+    "location": "Text location updated nigeria",
     "dateTime": "-01-01T15:30:00Z"
 }
