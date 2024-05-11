@@ -41,15 +41,35 @@ func (u User) Save() error {
 	return err
 }
 
+// func (u User) ValidateCredentials() error {
+// 	query := "SELECT email, password FROM users WHERE email = ?"
+// 	row := db.DB.QueryRow(query, u.Email)
+
+// 	var retrievedPassword string
+// 	err := row.Scan(&retrievedPassword)
+
+// 	if err != nil {
+// 		return errors.New("password is not valid")
+// 	}
+
+// 	passwordIsValid := utils.CheckPasswordHash(u.Password, retrievedPassword)
+
+// 	if !passwordIsValid {
+// 		return errors.New("password is not valid")
+// 	}
+
+// 	return nil
+// }
+
 func (u User) ValidateCredentials() error {
 	query := "SELECT email, password FROM users WHERE email = ?"
 	row := db.DB.QueryRow(query, u.Email)
 
-	var retrievedPassword string
-	err := row.Scan(&retrievedPassword)
+	var retrievedEmail, retrievedPassword string
+	err := row.Scan(&retrievedEmail, &retrievedPassword)
 
 	if err != nil {
-		return errors.New("password is not valid")
+		return errors.New("user not found")
 	}
 
 	passwordIsValid := utils.CheckPasswordHash(u.Password, retrievedPassword)
