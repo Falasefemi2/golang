@@ -26,7 +26,7 @@ func VerifyToken(token string) error {
 		if !ok {
 			return nil, errors.New("invalid token")
 		}
-		return secretKey, nil
+		return []byte(secretKey), nil
 	})
 
 	if err != nil {
